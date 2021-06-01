@@ -22,7 +22,7 @@ class BonusServiceTest {
 	private int _limite = 10_000;
 
 	@Test
-	void deveRetornarBonusZeradoParaSalarioAcimaDoLimite() {
+	public void deveRetornarBonusZeradoParaSalarioAcimaDoLimite() {
 
 		_salario = new BigDecimal(fake.random().nextInt(9999) + _limite);
 		_expectBonus = _salario.multiply(new BigDecimal("0"));
@@ -34,7 +34,7 @@ class BonusServiceTest {
 	}
 
 	@Test
-	void deveRetornarBonusDeDezPorcentoParaSalarioAbaixoDoLimite() {
+	public void deveRetornarBonusDeDezPorcentoParaSalarioAbaixoDoLimite() {
 
 		_salario = new BigDecimal(fake.random().nextInt(9999));
 		_expectBonus = _salario.multiply(new BigDecimal("0.1"));
@@ -46,7 +46,7 @@ class BonusServiceTest {
 	}
 
 	@Test
-	void deveRetornarBonusDeDezPorcentoParaSalarioIgualOLimite() {
+	public void deveRetornarBonusDeDezPorcentoParaSalarioIgualOLimite() {
 
 		_salario = new BigDecimal(_limite);
 		_expectBonus = _salario.multiply(new BigDecimal("0.1"));
