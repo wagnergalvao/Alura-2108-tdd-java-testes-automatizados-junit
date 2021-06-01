@@ -21,11 +21,26 @@ public class ReajusteServiceTest {
 	public void deveRetornarReajusteDeTresPorcentoParaDesemepenhoADesejar() {
 		ReajusteService service = new ReajusteService();
 		Funcionario funcionario = new Funcionario(fake.name().name(),
-				LocalDate.now().minusDays(fake.random().nextInt(365)), new BigDecimal(1000.00));
+				LocalDate.now().minusDays(fake.random().nextInt(365)), new BigDecimal("1000.00"));
 		service.calcularDesempenho(funcionario, Desempenho.A_DESEJAR);
-		System.out.println(funcionario.getNome());
-		System.out.println(funcionario.getDataAdmissao());
-		System.out.println(funcionario.getSalario());
 		assertEquals(new BigDecimal("1030.00"), funcionario.getSalario());
+	}
+
+	@Test
+	public void deveRetornarReajusteDeTresPorcentoParaDesemepenhoBom() {
+		ReajusteService service = new ReajusteService();
+		Funcionario funcionario = new Funcionario(fake.name().name(),
+				LocalDate.now().minusDays(fake.random().nextInt(365)), new BigDecimal("2000.00"));
+		service.calcularDesempenho(funcionario, Desempenho.BOM);
+		assertEquals(new BigDecimal("2300.00"), funcionario.getSalario());
+	}
+
+	@Test
+	public void deveRetornarReajusteDeTresPorcentoParaDesemepenhoOtimo() {
+		ReajusteService service = new ReajusteService();
+		Funcionario funcionario = new Funcionario(fake.name().name(),
+				LocalDate.now().minusDays(fake.random().nextInt(365)), new BigDecimal("3000.00"));
+		service.calcularDesempenho(funcionario, Desempenho.OTIMO);
+		assertEquals(new BigDecimal("3600.00"), funcionario.getSalario());
 	}
 }
